@@ -4,13 +4,8 @@ export default defineNuxtConfig({
   modules: [
     '@nuxtjs/tailwindcss',
     '@pinia/nuxt',
-    '@vite-pwa/nuxt',
-    '@nuxtjs/supabase'
+    '@vite-pwa/nuxt'
   ],
-
-  supabase: {
-    redirect: false
-  },
 
   pwa: {
     manifest: {
@@ -73,6 +68,8 @@ export default defineNuxtConfig({
 
   runtimeConfig: {
     public: {
+      supabaseUrl: process.env.SUPABASE_URL ?? '',
+      supabaseKey: process.env.SUPABASE_KEY ?? '',
       apiUrl: '',
       appUrl: ''
     }
