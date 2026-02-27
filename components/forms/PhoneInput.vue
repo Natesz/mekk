@@ -47,12 +47,12 @@ function handleBlur(): void {
       <span v-if="props.required" class="text-red-500">*</span>
     </label>
     <div class="flex items-center min-w-0">
-      <span class="shrink-0 px-3 py-2 bg-gray-100 border border-r-0 border-gray-300 rounded-l-2xl text-gray-600 font-medium text-sm">
+      <span class="shrink-0 px-3 py-2 bg-gray-50 border-2 border-r-0 border-green-300 rounded-l-full text-gray-600 font-medium text-sm">
         +36
       </span>
       <select
         :value="props.phonePrefix"
-        class="shrink-0 w-16 px-2 py-2 border border-r-0 border-gray-300 bg-white text-gray-900 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors cursor-pointer appearance-none"
+        class="shrink-0 w-16 px-2 py-2 border-2 border-r-0 border-green-300 bg-white text-gray-900 text-sm focus:outline-none focus:ring-2 focus:ring-green-100 focus:border-green-500 transition-colors cursor-pointer appearance-none"
         @change="handlePrefixChange"
       >
         <option
@@ -68,8 +68,8 @@ function handleBlur(): void {
         :value="props.phoneNumber"
         placeholder="1234567"
         maxlength="7"
-        class="min-w-0 flex-1 px-4 py-2 border rounded-r-2xl bg-white text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors"
-        :class="[props.error ? 'border-red-500' : 'border-gray-300']"
+        class="min-w-0 flex-1 px-4 py-2 border-2 rounded-r-full bg-white text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-green-100 focus:border-green-500 transition-colors"
+        :class="[props.error ? 'border-red-500' : 'border-green-300']"
         @input="handleNumberInput"
         @blur="handleBlur"
       />

@@ -2,17 +2,10 @@
 </script>
 
 <template>
-  <div
-    class="w-[70px] h-[70px] bg-blue-500 rounded-full flex items-center justify-center"
-  >
-    <svg
-      class="w-8 h-8 text-white"
-      fill="currentColor"
-      viewBox="0 0 24 24"
-    >
-      <circle cx="12" cy="8" r="4" />
-      <circle cx="7" cy="16" r="3" />
-      <circle cx="17" cy="16" r="3" />
-    </svg>
-  </div>
+  <img
+    src="/pictures/logo1.png"
+    alt="MEKK logó"
+    class="h-14 w-auto"
+    style="filter: brightness(0) saturate(100%) invert(35%) sepia(95%) saturate(650%) hue-rotate(106deg) brightness(97%)"
+  />
 </template>

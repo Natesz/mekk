@@ -34,7 +34,7 @@ defineProps<{
         <p class="text-xl font-bold text-gray-900 font-mono">
           {{ orderId }}
         </p>
-        <span class="inline-block mt-2 px-3 py-1 bg-blue-100 text-blue-700 text-sm font-medium rounded-xl">
+        <span class="inline-block mt-2 px-3 py-1 bg-green-100 text-green-700 text-sm font-medium rounded-xl">
           Összeállítás alatt
         </span>
       </div>

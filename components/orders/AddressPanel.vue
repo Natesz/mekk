@@ -26,6 +26,10 @@ const europeanCountries = [
   'Görögország', 'Portugália', 'Bulgária', 'Lettország', 'Litvánia',
   'Észtország', 'Szlovénia', 'Bosznia-Hercegovina', 'Montenegró', 'Albánia'
 ]
+
+const countryOptions = europeanCountries.map(c => ({ value: c, label: c }))
+
+const inputClass = 'px-4 py-2 border-2 border-green-300 rounded-full bg-white text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-green-100 focus:border-green-500 transition-colors'
 </script>
 
 <template>
@@ -36,101 +40,50 @@ const europeanCountries = [
 
     <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
       <div class="flex flex-col gap-1 md:col-span-2">
-        <label class="text-sm font-medium text-gray-700">
-          Ország <span class="text-red-500">*</span>
-        </label>
-        <div class="relative">
-          <select
-            v-model="country"
-            class="w-full px-4 py-2 pr-10 border border-gray-300 rounded-2xl bg-white text-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors appearance-none cursor-pointer"
-          >
-            <option v-for="c in europeanCountries" :key="c" :value="c">
-              {{ c }}
-            </option>
-          </select>
-          <div class="absolute inset-y-0 right-3 flex items-center pointer-events-none">
-            <svg class="w-4 h-4 text-blue-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
-            </svg>
-          </div>
-        </div>
+        <FormsSelectField
+          v-model="country"
+          label="Ország"
+          :options="countryOptions"
+          placeholder="Válassz országot"
+          required
+        />
       </div>
 
       <template v-if="borrowerType === 'individual'">
         <div class="flex flex-col gap-1">
           <label class="text-sm font-medium text-gray-700">Utca</label>
-          <input
-            v-model="street"
-            type="text"
-            placeholder="Kossuth utca"
-            class="px-4 py-2 border border-gray-300 rounded-2xl bg-white text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors"
-          />
+          <input v-model="street" type="text" placeholder="Kossuth utca" :class="inputClass" />
         </div>
         <div class="flex flex-col gap-1">
           <label class="text-sm font-medium text-gray-700">Házszám</label>
-          <input
-            v-model="houseNumber"
-            type="text"
-            placeholder="12/A"
-            class="px-4 py-2 border border-gray-300 rounded-2xl bg-white text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors"
-          />
+          <input v-model="houseNumber" type="text" placeholder="12/A" :class="inputClass" />
         </div>
         <div class="flex flex-col gap-1">
           <label class="text-sm font-medium text-gray-700">Város</label>
-          <input
-            v-model="city"
-            type="text"
-            placeholder="Budapest"
-            class="px-4 py-2 border border-gray-300 rounded-2xl bg-white text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors"
-          />
+          <input v-model="city" type="text" placeholder="Budapest" :class="inputClass" />
         </div>
         <div class="flex flex-col gap-1">
           <label class="text-sm font-medium text-gray-700">Irányítószám</label>
-          <input
-            v-model="zipCode"
-            type="text"
-            placeholder="1234"
-            class="px-4 py-2 border border-gray-300 rounded-2xl bg-white text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors"
-          />
+          <input v-model="zipCode" type="text" placeholder="1234" :class="inputClass" />
         </div>
       </template>
 
       <template v-else-if="borrowerType === 'business'">
         <div class="flex flex-col gap-1">
           <label class="text-sm font-medium text-gray-700">Cégjegyzékszám</label>
-          <input
-            v-model="companyRegNumber"
-            type="text"
-            placeholder="01-09-123456"
-            class="px-4 py-2 border border-gray-300 rounded-2xl bg-white text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors"
-          />
+          <input v-model="companyRegNumber" type="text" placeholder="01-09-123456" :class="inputClass" />
         </div>
         <div class="flex flex-col gap-1">
           <label class="text-sm font-medium text-gray-700">Cégnév</label>
-          <input
-            v-model="companyName"
-            type="text"
-            placeholder="Példa Kft."
-            class="px-4 py-2 border border-gray-300 rounded-2xl bg-white text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors"
-          />
+          <input v-model="companyName" type="text" placeholder="Példa Kft." :class="inputClass" />
         </div>
         <div class="flex flex-col gap-1 md:col-span-2">
           <label class="text-sm font-medium text-gray-700">Székhely</label>
-          <input
-            v-model="headquarters"
-            type="text"
-            placeholder="1234 Budapest, Kossuth utca 1."
-            class="px-4 py-2 border border-gray-300 rounded-2xl bg-white text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors"
-          />
+          <input v-model="headquarters" type="text" placeholder="1234 Budapest, Kossuth utca 1." :class="inputClass" />
         </div>
         <div class="flex flex-col gap-1 md:col-span-2">
           <label class="text-sm font-medium text-gray-700">Kapcsolattartó név</label>
-          <input
-            v-model="contactName"
-            type="text"
-            placeholder="Kovács János"
-            class="px-4 py-2 border border-gray-300 rounded-2xl bg-white text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors"
-          />
+          <input v-model="contactName" type="text" placeholder="Kovács János" :class="inputClass" />
         </div>
       </template>
     </div>

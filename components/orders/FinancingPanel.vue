@@ -11,11 +11,6 @@ const currencyOptions = [
   { value: 'CZK', label: 'CZK' }
 ]
 
-function handleCurrencyChange(event: Event): void {
-  const target = event.target as HTMLSelectElement
-  pendingOrderStore.setCurrency(target.value)
-}
-
 function handleQuantityInput(event: Event): void {
   const target = event.target as HTMLInputElement
   const value = target.value.replace(/[^0-9]/g, '')
@@ -30,27 +25,13 @@ function handleQuantityInput(event: Event): void {
     </h4>
 
     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-      <div class="flex flex-col gap-1">
-        <label class="text-sm font-medium text-gray-700">
-          Elszámoló deviza <span class="text-red-500">*</span>
-        </label>
-        <div class="relative">
-          <select
-            :value="pendingOrderStore.currency"
-            class="w-full px-4 py-2 pr-10 border border-gray-300 rounded-2xl bg-white text-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors appearance-none cursor-pointer"
-            @change="handleCurrencyChange"
-          >
-            <option v-for="option in currencyOptions" :key="option.value" :value="option.value">
-              {{ option.label }}
-            </option>
-          </select>
-          <div class="absolute inset-y-0 right-3 flex items-center pointer-events-none">
-            <svg class="w-4 h-4 text-blue-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
-            </svg>
-          </div>
-        </div>
-      </div>
+      <FormsSelectField
+        :model-value="pendingOrderStore.currency"
+        label="Elszámoló deviza"
+        :options="currencyOptions"
+        required
+        @update:model-value="pendingOrderStore.setCurrency($event)"
+      />
 
       <div class="flex flex-col gap-1">
         <label class="text-sm font-medium text-gray-700">
@@ -61,8 +42,8 @@ function handleQuantityInput(event: Event): void {
           inputmode="numeric"
           :value="pendingOrderStore.quantity"
           placeholder="pl. 10"
-          class="px-4 py-2 border rounded-2xl bg-white text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors"
-          :class="quantityError ? 'border-red-500' : 'border-gray-300'"
+          class="px-4 py-2 border-2 rounded-full bg-white text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-green-100 focus:border-green-500 transition-colors"
+          :class="quantityError ? 'border-red-500' : 'border-green-300'"
           @input="handleQuantityInput"
         />
         <span v-if="quantityError" class="text-sm text-red-500">{{ quantityError }}</span>

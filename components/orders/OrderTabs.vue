@@ -20,7 +20,7 @@ function setTab(tab: ActiveTab): void {
       type="button"
       class="px-6 py-3 text-sm font-medium whitespace-nowrap border-b-2 transition-colors"
       :class="activeTab === 'general'
-        ? 'border-blue-500 text-blue-600'
+        ? 'border-green-500 text-green-600'
         : 'border-transparent text-gray-500 hover:text-gray-700'"
       @click="setTab('general')"
     >
@@ -31,7 +31,7 @@ function setTab(tab: ActiveTab): void {
       type="button"
       class="px-6 py-3 text-sm font-medium whitespace-nowrap border-b-2 transition-colors"
       :class="activeTab === 'order'
-        ? 'border-blue-500 text-blue-600'
+        ? 'border-green-500 text-green-600'
         : 'border-transparent text-gray-500 hover:text-gray-700'"
       @click="setTab('order')"
     >

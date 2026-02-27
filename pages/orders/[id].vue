@@ -24,9 +24,7 @@ function setActiveTab(tab: 'general' | 'order'): void {
 
 <template>
   <div class="min-h-screen bg-gray-100">
-    <AppHeader :show-new-order-button="false" :is-home-link-active="true" />
-
-    <AppBreadcrumb :items="breadcrumbItems" />
+    <AppHeader :show-new-order-button="false" :breadcrumb-items="breadcrumbItems" />
 
     <main class="max-w-4xl mx-auto px-4 py-4 space-y-4">
       <OrdersOrderDetailHeader

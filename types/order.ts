@@ -7,9 +7,9 @@ export const ORDER_STATUS_LABELS: Record<OrderStatus, string> = {
 }
 
 export const ORDER_STATUS_COLORS: Record<OrderStatus, string> = {
-  assembling: 'bg-blue-100 text-blue-700',
+  assembling: 'bg-green-100 text-green-700',
   shipping: 'bg-yellow-100 text-yellow-700',
-  delivered: 'bg-green-100 text-green-700'
+  delivered: 'bg-green-600 text-white'
 }
 
 export interface Order {

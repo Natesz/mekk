@@ -40,8 +40,8 @@ function handleBlur(): void {
       :type="props.type"
       :value="props.modelValue"
       :placeholder="props.placeholder"
-      class="w-full px-4 py-2 border rounded-2xl bg-white text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors"
-      :class="[props.error ? 'border-red-500' : 'border-gray-300']"
+      class="w-full px-4 py-2 border-2 rounded-full bg-white text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-green-100 focus:border-green-500 transition-colors"
+      :class="[props.error ? 'border-red-500' : 'border-green-300']"
       @input="handleInput"
       @blur="handleBlur"
     />

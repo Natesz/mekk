@@ -23,7 +23,7 @@ function navigate(to?: string): void {
       <button
         v-if="item.to"
         type="button"
-        class="text-blue-500 hover:text-blue-600 hover:underline"
+        class="text-green-600 hover:text-green-700 hover:underline"
         @click="navigate(item.to)"
       >
         {{ item.label }}

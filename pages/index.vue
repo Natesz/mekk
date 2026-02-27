@@ -8,7 +8,7 @@ onMounted(async () => {
 
 <template>
   <div class="min-h-screen bg-gray-100">
-    <AppHeader :show-new-order-button="true" :is-home-link-active="false" />
+    <AppHeader :show-new-order-button="true" />
 
     <main class="max-w-4xl mx-auto py-6 px-4">
       <h1 class="text-3xl font-bold text-gray-900 mb-6">
