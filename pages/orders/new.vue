@@ -3,6 +3,12 @@ const breadcrumbItems = [
   { label: 'Főoldal', to: '/' },
   { label: 'Megrendelés' }
 ]
+
+const pendingOrderStore = usePendingOrderStore()
+
+onMounted(() => {
+  pendingOrderStore.resetOrder()
+})
 </script>
 
 <template>

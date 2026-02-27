@@ -31,7 +31,7 @@ function goToHome(): void {
         <button
           v-if="props.showNewOrderButton"
           type="button"
-          class="px-6 py-2 bg-blue-500 hover:bg-blue-600 text-white font-medium rounded-xl transition-colors whitespace-nowrap"
+          class="px-6 py-2 bg-blue-500 hover:bg-blue-600 text-white font-medium rounded-full transition-colors whitespace-nowrap"
           @click="handleNewOrder"
         >
           Új megrendelés

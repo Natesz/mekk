@@ -5,7 +5,6 @@ export function useOrderForm() {
   const formData = reactive<OrderFormData>({
     customerName: '',
     borrowerType: '',
-    contactPerson: '',
     phonePrefix: '20',
     phoneNumber: '',
     email: ''
@@ -18,7 +17,6 @@ export function useOrderForm() {
   function clearErrors(): void {
     errors.customerName = undefined
     errors.borrowerType = undefined
-    errors.contactPerson = undefined
     errors.phoneNumber = undefined
     errors.email = undefined
   }
@@ -64,7 +62,6 @@ export function useOrderForm() {
   function resetForm(): void {
     formData.customerName = ''
     formData.borrowerType = ''
-    formData.contactPerson = ''
     formData.phonePrefix = '20'
     formData.phoneNumber = ''
     formData.email = ''
@@ -83,13 +80,6 @@ export function useOrderForm() {
     formData.borrowerType = value
     if (errors.borrowerType && value) {
       errors.borrowerType = undefined
-    }
-  }
-
-  function setContactPerson(value: string): void {
-    formData.contactPerson = value
-    if (errors.contactPerson && value.length >= 2) {
-      errors.contactPerson = undefined
     }
   }
 
@@ -126,7 +116,6 @@ export function useOrderForm() {
     resetForm,
     setCustomerName,
     setBorrowerType,
-    setContactPerson,
     setPhonePrefix,
     setPhoneNumber,
     setEmail

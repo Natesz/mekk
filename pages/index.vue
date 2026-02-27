@@ -11,6 +11,10 @@ onMounted(async () => {
     <AppHeader :show-new-order-button="true" :is-home-link-active="false" />
 
     <main class="max-w-4xl mx-auto py-6 px-4">
+      <h1 class="text-3xl font-bold text-gray-900 mb-6">
+        MEKK Főoldal
+      </h1>
+
       <div class="bg-white rounded-2xl shadow-sm p-6">
         <div v-if="ordersStore.loading" class="text-gray-400 text-center py-8">
           Betöltés...

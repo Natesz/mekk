@@ -26,10 +26,6 @@ export const orderFormSchema = z.object({
     .min(1, 'Az érdeklődő neve kötelező')
     .min(2, 'A név legalább 2 karakter legyen'),
   borrowerType: borrowerTypeSchema,
-  contactPerson: z
-    .string()
-    .min(1, 'A kapcsolattartó neve kötelező')
-    .min(2, 'A név legalább 2 karakter legyen'),
   phonePrefix: phonePrefixSchema,
   phoneNumber: phoneNumberSchema,
   email: emailSchema

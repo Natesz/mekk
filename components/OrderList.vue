@@ -1,19 +1,15 @@
 <script setup lang="ts">
 import type { Order } from '~/types/order'
 
-const props = defineProps<{
+defineProps<{
   orders: Order[]
 }>()
 </script>
 
 <template>
   <div>
-    <h2 class="text-xl font-semibold text-gray-900 mb-4">
-      Megrendelések
-    </h2>
-
     <div
-      v-if="props.orders.length === 0"
+      v-if="orders.length === 0"
       class="text-gray-500 text-center py-8"
     >
       Még nincsenek megrendelések.
@@ -21,10 +17,10 @@ const props = defineProps<{
 
     <div
       v-else
-      class="flex flex-row flex-wrap gap-3"
+      class="grid grid-cols-1 sm:grid-cols-2 gap-3"
     >
       <OrderCard
-        v-for="order in props.orders"
+        v-for="order in orders"
         :key="order.id"
         :order="order"
       />

@@ -33,15 +33,6 @@ defineProps<{
         </div>
 
         <div class="flex flex-col gap-1">
-          <span class="text-sm font-medium text-gray-700">Kapcsolattartó</span>
-          <div class="w-full px-4 py-2 border border-gray-200 rounded-xl bg-gray-100 text-gray-700">
-            {{ formData?.contactPerson || '—' }}
-          </div>
-        </div>
-
-        <div class="hidden md:block" />
-
-        <div class="flex flex-col gap-1">
           <span class="text-sm font-medium text-gray-700">Telefonszám</span>
           <div class="w-full px-4 py-2 border border-gray-200 rounded-xl bg-gray-100 text-gray-700">
             {{ formData ? formatPhoneDisplay(formData.phonePrefix, formData.phoneNumber) : '—' }}
