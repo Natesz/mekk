@@ -7,7 +7,7 @@ const props = defineProps<{
 </script>
 
 <template>
-  <div class="p-4">
+  <div>
     <h2 class="text-xl font-semibold text-gray-900 mb-4">
       Megrendelések
     </h2>
@@ -21,7 +21,7 @@ const props = defineProps<{
 
     <div
       v-else
-      class="flex flex-col gap-3"
+      class="flex flex-row flex-wrap gap-3"
     >
       <OrderCard
         v-for="order in props.orders"

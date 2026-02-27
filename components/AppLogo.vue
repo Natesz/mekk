@@ -3,10 +3,10 @@
 
 <template>
   <div
-    class="w-[50px] h-[50px] bg-blue-500 rounded-full flex items-center justify-center"
+    class="w-[70px] h-[70px] bg-blue-500 rounded-full flex items-center justify-center"
   >
     <svg
-      class="w-6 h-6 text-white"
+      class="w-8 h-8 text-white"
       fill="currentColor"
       viewBox="0 0 24 24"
     >

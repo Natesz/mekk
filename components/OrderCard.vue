@@ -11,7 +11,7 @@ function formatPrice(price: number): string {
 </script>
 
 <template>
-  <div class="bg-white border border-gray-200 rounded-lg p-4 shadow-sm min-w-[280px]">
+  <div class="bg-white border border-gray-200 rounded-2xl p-4 shadow-sm min-w-[280px]">
     <div class="flex justify-between items-center gap-4">
       <span class="font-medium text-gray-900">
         {{ order.customerName }}

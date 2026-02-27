@@ -1,5 +1,5 @@
 {
-  "name": "nuxt-skeleton",
+  "name": "mekk-app",
   "private": true,
   "type": "module",
   "scripts": {
@@ -10,6 +10,7 @@
     "postinstall": "nuxt prepare"
   },
   "dependencies": {
+    "@nuxtjs/supabase": "^1.4.0",
     "@pinia/nuxt": "^0.5.0",
     "nuxt": "^3.14.0",
     "pinia": "^2.2.0",
@@ -19,6 +20,7 @@
   },
   "devDependencies": {
     "@nuxtjs/tailwindcss": "^6.12.0",
+    "@vite-pwa/nuxt": "^1.1.1",
     "typescript": "^5.6.0"
   }
 }

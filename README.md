@@ -1,37 +1,85 @@
 # MEKK - Kecskesajt Megrendelés Kezelő
 
-Nuxt 3 alapú dashboard alkalmazás kecskesajt megrendelések kezelésére.
+Nuxt 3 PWA alkalmazás kecskesajt megrendelések kezelésére.
 
 ## Features
 
-- Dashboard főoldal
-- Header logóval és MEKK felirattal
-- Új megrendelés gomb (placeholder)
-- Megrendelések listája (üres állapot)
-- Megrendelés kártya komponens (név, termék, ár)
-- LocalStorage alapú perzisztencia (előkészítve)
+- **Dashboard főoldal** (`/`)
+  - Megrendelések listája vízszintes elrendezésben (Supabase-ből töltve)
+  - Új megrendelés gomb → navigál az Új megrendelés oldalra
+  - Kattintható kék kör logó (visszavisz a dashboardra)
+
+- **Új megrendelés oldal** (`/orders/new`)
+  - Érdeklődő adatok: név, hitelfelvevő típusa, kapcsolattartó, telefonszám (+36), email
+  - Zod alapú validáció – Tovább gomb csak valid adatoknál navigál tovább
+
+- **Megrendelés részletes oldal** (`/orders/:id`)
+  - Ajánlat fejléc: érdeklődő adatai + megrendelés azonosító (K2600001) + státusz
+  - Tab rendszer: Általános (read-only) | Megrendelés | Üzenetek (disabled) | Fizetés (disabled)
+  - Termék panel: dropdown + placeholder kép
+  - Finanszírozás panel: deviza (HUF/EUR/CZK) + darabszám (termék után jelenik meg)
 
 ## Stack
 
 - Nuxt 3
 - Tailwind CSS
-- Pinia (localStorage perzisztencia)
-- Zod
+- Pinia (in-memory state)
+- Supabase (adatbázis + képtárolás)
+- Zod (validáció)
 - TypeScript
 - Google Fonts (Montserrat)
+- PWA (@vite-pwa/nuxt)
 
-## Komponensek
+## Oldalak / Routes
 
-- `AppLogo.vue` - Kék kör logó
-- `AppHeader.vue` - Header (logó + MEKK + gomb)
-- `OrderCard.vue` - Megrendelés kártya
-- `OrderList.vue` - Megrendelések listája
-- `pages/DashboardPage.vue` - Dashboard page komponens
+| Route | Leírás |
+|-------|--------|
+| `/` | Dashboard |
+| `/orders/new` | Új megrendelés form |
+| `/orders/:id` | Megrendelés részletes oldal |
 
-## Környezeti változók
+## Supabase beállítás
 
-- `NUXT_PUBLIC_API_URL` - API URL
-- `NUXT_PUBLIC_APP_URL` - Alkalmazás URL
+### 1. Projekt létrehozása
 
-## Telepítés
+[https://supabase.com](https://supabase.com) → New project
 
+### 2. Migrációs script futtatása
+
+A Supabase Dashboard → SQL Editor-ban futtasd:
+
+```
+db/migrations/001_create_orders.sql
+```
+
+Ez létrehozza:
+- `orders` tábla (id, customer_name, product_name, price, image_url, created_at, updated_at)
+- `product-images` Storage bucket
+- RLS policy-k (anon hozzáférés, auth nélküli iterációhoz)
+
+### 3. Környezeti változók
+
+Másold a `.env.example`-t `.env`-be és töltsd ki:
+
+```bash
+cp .env.example .env
+```
+
+| Változó | Leírás |
+|---------|--------|
+| `SUPABASE_URL` | Project URL (Supabase Dashboard → Settings → API) |
+| `SUPABASE_KEY` | anon/public key (Supabase Dashboard → Settings → API) |
+
+## Fejlesztés
+
+```bash
+npm install
+npm run dev
+```
+
+## Build
+
+```bash
+npm run build
+npm run preview
+```

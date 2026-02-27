@@ -1,4 +1,4 @@
-# Claude Code – Nuxt Project Guidelines (David’s Style)
+# Claude Code – Nuxt Project Guidelines (Atesz Style)
 
 This file defines **mandatory rules** for all code generation and modifications in this Nuxt codebase.
 If any rule would be violated, stop and fix the solution to fully comply with these guidelines.
@@ -160,5 +160,7 @@ For every task:
 - Random global CSS without Tailwind-first justification.
 - Unstructured logic in pages/components (move to composables/services/utils).
 - Secret values in repo files.
+
+
 
 ---

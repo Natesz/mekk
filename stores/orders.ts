@@ -1,13 +1,18 @@
 import { defineStore } from 'pinia'
 import type { Order } from '~/types/order'
+import { fetchOrders, insertOrder, deleteOrder } from '~/services/ordersService'
 
 interface OrdersState {
   orders: Order[]
+  loading: boolean
+  error: string | null
 }
 
 export const useOrdersStore = defineStore('orders', {
   state: (): OrdersState => ({
-    orders: []
+    orders: [],
+    loading: false,
+    error: null
   }),
 
   getters: {
@@ -16,37 +21,29 @@ export const useOrdersStore = defineStore('orders', {
   },
 
   actions: {
-    addOrder(order: Order): void {
-      if (import.meta.client) {
-        this.orders.push(order)
-        this.saveToLocalStorage()
+    async loadOrders(): Promise<void> {
+      const supabase = useSupabaseClient()
+      this.loading = true
+      this.error = null
+      try {
+        this.orders = await fetchOrders(supabase)
+      } catch (e) {
+        this.error = e instanceof Error ? e.message : 'Nem sikerült betölteni a megrendeléseket'
+      } finally {
+        this.loading = false
       }
     },
 
-    removeOrder(id: string): void {
-      if (import.meta.client) {
-        this.orders = this.orders.filter(order => order.id !== id)
-        this.saveToLocalStorage()
-      }
+    async addOrder(order: Order): Promise<void> {
+      const supabase = useSupabaseClient()
+      await insertOrder(supabase, order)
+      this.orders.unshift(order)
     },
 
-    loadFromLocalStorage(): void {
-      if (import.meta.client) {
-        const stored = localStorage.getItem('mekk-orders')
-        if (stored) {
-          try {
-            this.orders = JSON.parse(stored)
-          } catch {
-            this.orders = []
-          }
-        }
-      }
-    },
-
-    saveToLocalStorage(): void {
-      if (import.meta.client) {
-        localStorage.setItem('mekk-orders', JSON.stringify(this.orders))
-      }
+    async removeOrder(id: string): Promise<void> {
+      const supabase = useSupabaseClient()
+      await deleteOrder(supabase, id)
+      this.orders = this.orders.filter(o => o.id !== id)
     }
   }
 })
