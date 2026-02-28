@@ -15,6 +15,7 @@ const tabs: Tab[] = [
 
 const props = defineProps<{
   activeTab: string
+  errorTabs?: string[]
 }>()
 
 const emit = defineEmits<{
@@ -40,7 +41,9 @@ function selectTab(tab: Tab): void {
           ? 'text-gray-400 cursor-not-allowed'
           : props.activeTab === tab.id
             ? 'bg-green-600 text-white shadow-sm'
-            : 'text-gray-600 hover:bg-white hover:text-gray-900 hover:shadow-sm'
+            : props.errorTabs?.includes(tab.id)
+              ? 'text-red-600 hover:bg-red-50 hover:shadow-sm'
+              : 'text-gray-600 hover:bg-white hover:text-gray-900 hover:shadow-sm'
       ]"
       :disabled="tab.disabled"
       @click="selectTab(tab)"

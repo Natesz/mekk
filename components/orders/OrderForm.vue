@@ -21,6 +21,21 @@ const productError = ref('')
 const quantityError = ref('')
 const isCreating = ref(false)
 
+const errorTabs = computed(() => {
+  const tabs: string[] = []
+  if (productError.value || quantityError.value) tabs.push('rendeles')
+  if (errors.customerName || errors.borrowerType || errors.phoneNumber || errors.email) tabs.push('erdeklodo')
+  return tabs
+})
+
+watch(() => pendingOrderStore.selectedProduct, (val) => {
+  if (val && productError.value) productError.value = ''
+})
+
+watch(() => pendingOrderStore.quantity, (val) => {
+  if (val && Number(val) >= 1 && quantityError.value) quantityError.value = ''
+})
+
 function handleBorrowerTypeChange(value: string): void {
   setBorrowerType(value as 'individual' | 'business' | '')
 }
@@ -49,7 +64,7 @@ async function handleCreateOrder(): Promise<void> {
       productName: pendingOrderStore.selectedProduct,
       price: pendingOrderStore.productPrice,
       quantity: Number(pendingOrderStore.quantity),
-      currency: pendingOrderStore.currency,
+      currency: 'HUF',
       status: 'assembling'
     })
     pendingOrderStore.resetOrder()
@@ -63,7 +78,10 @@ async function handleCreateOrder(): Promise<void> {
 <template>
   <div class="space-y-4">
     <!-- Tab navigáció -->
-    <OrdersNewOrderTabs v-model:active-tab="activeTab" />
+    <OrdersNewOrderTabs
+      v-model:active-tab="activeTab"
+      :error-tabs="errorTabs"
+    />
 
     <!-- Rendelés tab -->
     <OrdersNewTabsRendelesTab
